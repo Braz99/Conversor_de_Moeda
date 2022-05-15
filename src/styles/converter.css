@@ -1,53 +1,53 @@
 ::selection {
-    background-color: #fff ;
-    color: rgb(16, 85, 233);
+  background-color: #fff;
+  color: rgb(16, 85, 233);
 }
 
 body {
-    background-color: rgb(16, 85, 233);
+  background-color: rgb(16, 85, 233);
 }
 
-.conversor {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    color: #fff;
-    width: 50%;
-    min-width: 300px;
-    margin: 10px auto;
-    border-radius: 10px;
-    padding: 20px;  
-    box-shadow: 2px 2px 5px black;
-    box-sizing: border-box;
+.converter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  width: 50%;
+  min-width: 300px;
+  margin: 10px auto;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 2px 2px 5px black;
+  box-sizing: border-box;
 }
 
-.input_dados { 
-   font-size: 20px;
-   width: 50%;
-   min-width: 60px;
-   align-self: center;
-   height: 40px;
-   min-height: 30px;
-   margin: 20px 0px 20px 0px;
-   border-radius: 5px;
-   padding: 0px 10px 0px 10px;
-   box-sizing: border-box;
-   border:none;
+.data-input {
+  font-size: 20px;
+  width: 50%;
+  min-width: 60px;
+  align-self: center;
+  height: 40px;
+  min-height: 30px;
+  margin: 20px 0px 20px 0px;
+  border-radius: 5px;
+  padding: 0px 10px 0px 10px;
+  box-sizing: border-box;
+  border: none;
 }
 
-.botao_dados {
-   background-color: rgb(97, 96, 96);
-   color: #fff;
-   width: 50%;
-   min-width: 60px;
-   margin: 5px 0px 5px 0px;
-   height: 40px;
-   min-height: 30px;
-   font-size: 20px;
-   border-radius: 5px;
-   align-self: center;
-   border:none;
-   cursor: pointer;
-   box-shadow: 1px 1px 5px black;
+.data-button {
+  background-color: rgb(97, 96, 96);
+  color: #fff;
+  width: 50%;
+  min-width: 60px;
+  margin: 5px 0px 5px 0px;
+  height: 40px;
+  min-height: 30px;
+  font-size: 20px;
+  border-radius: 5px;
+  align-self: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 1px 1px 5px black;
 }

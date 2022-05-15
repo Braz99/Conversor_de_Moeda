@@ -3,8 +3,8 @@ import CurrencyConverter from "./components/CurrencyConverter";
 function App() {
   return (
     <div className="App">
-      <CurrencyConverter moedaA="BRL" moedaB="USD" />
-      <CurrencyConverter moedaA="USD" moedaB="BRL" />
+      <CurrencyConverter from="BRL" to="USD" />
+      <CurrencyConverter from="USD" to="BRL" />
     </div>
   );
 }

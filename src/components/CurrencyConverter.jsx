@@ -1,42 +1,45 @@
 import { useState } from "react";
 import "../styles/converter.css";
 
-export default function CurrencyConverter(props) {
-  let [valorMoeda, setValorMoeda] = useState(0.0);
-  let [valorConvertido, setValorConvertido] = useState(0);
+export default function CurrencyConverter({ from, to }) {
+  let [PriceCurrency, setPriceCurrency] = useState(0.0);
+  let [exchangedCurrency, setExchangedCurrency] = useState(0);
 
-  let dados = `${props.moedaA}_${props.moedaB}`;
-  let url = `https://free.currconv.com/api/v7/convert?q=${dados}&compact=ultra&apiKey=c0e646585b759fbb1ea0`;
+  let data = `${from}_${to}`;
+  let url = `https://free.currconv.com/api/v7/convert?q=${data}&compact=ultra&apiKey=c0e646585b759fbb1ea0`;
 
-  function converters() {
+  function exchange() {
     fetch(url)
       .then((res) => {
         return res.json();
       })
       .then((json) => {
-        let cotacao = json[dados];
-        setValorConvertido((parseFloat(valorMoeda) * cotacao).toFixed(2));
+        let exchangeCurrency = json[data];
+        setExchangedCurrency(
+          (parseFloat(PriceCurrency) * exchangeCurrency).toFixed(2)
+        );
       });
   }
 
   return (
-    <div className="conversor">
+    <div className="converter">
       <h2>
-        {props.moedaA} para {props.moedaB}
+        {from} para {to}
       </h2>
 
       <input
-        className="input_dados"
+        className="data-input"
         type="text"
         onChange={(event) => {
-          setValorMoeda(event.target.value);
+          setPriceCurrency(event.target.value);
         }}
       />
 
-      <button className="botao_dados" type="submit" onClick={converters}>
+      <button className="data-button" type="submit" onClick={exchange}>
         Converter
       </button>
-      <h2>Valor convertido = {valorConvertido}</h2>
+
+      <h2>Valor convertido = {exchangedCurrency}</h2>
     </div>
   );
 }
