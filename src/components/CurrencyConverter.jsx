@@ -1,28 +1,63 @@
 import useCurrency from "../hooks/useCurrency";
 import "../styles/converter.css";
 
-export default function CurrencyConverter({ from, to }) {
-  let { setPriceCurrency, exchangedCurrency, exchange } = useCurrency(from, to);
+export default function CurrencyConverter() {
+  let {
+    setPriceCurrency,
+    setExchangedCurrency,
+    exchangedCurrency,
+    exchange,
+    currenciesList,
+    setFrom,
+    setTo,
+  } = useCurrency();
 
   return (
     <div className="converter">
-      <h2>
-        {from} para {to}
-      </h2>
+      <div>
+        <div className="currency-one">
+          <span>Moeda 1: </span>
+          <select name="from" onChange={(event) => setFrom(event.target.value)}>
+            {currenciesList.map((currency, i) => (
+              <option key={i} value={currency}>
+                {currency}
+              </option>
+            ))}
+          </select>
+          <input
+            className="data-input"
+            type="text"
+            onChange={(event) => {
+              setPriceCurrency(event.target.value);
+              if (event.target.value === "") {
+                setExchangedCurrency(0);
+              }
+            }}
+          />
+        </div>
 
-      <input
-        className="data-input"
-        type="text"
-        onChange={(event) => {
-          setPriceCurrency(event.target.value);
-        }}
-      />
+        <div className="currency-two">
+          <span>Moeda 2:</span>
+          <select name="to" onChange={(event) => setTo(event.target.value)}>
+            {currenciesList.map((currency, i) => (
+              <option key={i} value={currency}>
+                {currency}
+              </option>
+            ))}
+          </select>
 
-      <button className="data-button" type="submit" onClick={exchange}>
-        Converter
-      </button>
+          <input
+            className="data-input"
+            type="text"
+            value={exchangedCurrency}
+            readOnly={true}
+          />
+        </div>
 
-      <h2>Valor convertido = {exchangedCurrency}</h2>
+        <button className="data-button" type="submit" onClick={exchange}>
+          Converter
+        </button>
+      </div>
     </div>
   );
 }

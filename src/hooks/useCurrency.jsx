@@ -1,14 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function useCurrency(from, to) {
-  let [PriceCurrency, setPriceCurrency] = useState(0.0);
+export default function useCurrency() {
+  let [priceCurrency, setPriceCurrency] = useState(0.0);
+  let [data, setData] = useState("");
   let [exchangedCurrency, setExchangedCurrency] = useState(0);
-
-  let data = `${from}_${to}`;
+  let [currenciesList, setCurrenciesList] = useState([]);
+  let [from, setFrom] = useState("");
+  let [to, setTo] = useState("");
   let apiKey = process.env.REACT_APP_API_KEY;
   let url = `https://free.currconv.com/api/v7/convert?q=${data}&compact=ultra&apiKey=${apiKey}`;
 
   let currencies = `https://free.currconv.com/api/v7/currencies?apiKey=${apiKey}`;
+
+  useEffect(
+    () =>
+      fetch(currencies)
+        .then((res) => {
+          return res.json();
+        })
+        .then((json) => {
+          setCurrenciesList(Object.keys(json.results));
+        }),
+
+    [currencies]
+  );
+
+  useEffect(() => setData(`${from}_${to}`), [from, to, setData]);
 
   function exchange() {
     fetch(url)
@@ -18,7 +35,7 @@ export default function useCurrency(from, to) {
       .then((json) => {
         let exchangeCurrency = json[data];
         setExchangedCurrency(
-          (parseFloat(PriceCurrency) * exchangeCurrency).toFixed(2)
+          (parseFloat(priceCurrency) * exchangeCurrency).toFixed(2)
         );
       });
   }
@@ -26,6 +43,10 @@ export default function useCurrency(from, to) {
   return {
     setPriceCurrency,
     exchange,
+    setExchangedCurrency,
     exchangedCurrency,
+    currenciesList,
+    setFrom,
+    setTo,
   };
 }
