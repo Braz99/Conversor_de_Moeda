@@ -22,8 +22,8 @@ export default function CurrencyConverter() {
           onChange={(event) => setFrom(event.target.value)}
         >
           {currenciesList.map((currency, i) => (
-            <option key={i} value={currency}>
-              {currency}
+            <option key={i} value={currency[0]} title={currency[1]}>
+              {currency[0]}
             </option>
           ))}
         </select>
@@ -47,8 +47,8 @@ export default function CurrencyConverter() {
           onChange={(event) => setTo(event.target.value)}
         >
           {currenciesList.map((currency, i) => (
-            <option key={i} value={currency}>
-              {currency}
+            <option key={i} value={currency[0]} title={currency[1]}>
+              {currency[0]}
             </option>
           ))}
         </select>

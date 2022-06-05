@@ -4,7 +4,9 @@ export default function useCurrency() {
   let [priceCurrency, setPriceCurrency] = useState(0.0);
   let [data, setData] = useState("");
   let [exchangedCurrency, setExchangedCurrency] = useState(0.0);
-  let [currenciesList, setCurrenciesList] = useState(["Selecione"]);
+  let [currenciesList, setCurrenciesList] = useState([
+    ["selecione", "selecione"],
+  ]);
   let [from, setFrom] = useState("");
   let [to, setTo] = useState("");
 
@@ -19,9 +21,24 @@ export default function useCurrency() {
           return res.json();
         })
         .then((json) => {
-          setCurrenciesList(Object.keys(json.results));
-        }),
+          if (json.error) {
+            return "";
+          }
 
+          let list = Object.entries(json.results);
+
+          list = list.map((item) => [item[0], Object.values(item[1])[0]]);
+
+          setCurrenciesList(
+            list.sort((a, b) => {
+              if (a < b) {
+                return -1;
+              } else {
+                return true;
+              }
+            })
+          );
+        }),
     [currencies]
   );
 
