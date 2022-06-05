@@ -15,8 +15,12 @@ export default function CurrencyConverter() {
   return (
     <div className="converter">
       <div className="from-currency">
-        <span>Moeda 1: </span>
-        <select name="from" onChange={(event) => setFrom(event.target.value)}>
+        <span className="from-currency-title">Moeda 1: </span>
+        <select
+          className="from-select"
+          name="from"
+          onChange={(event) => setFrom(event.target.value)}
+        >
           {currenciesList.map((currency, i) => (
             <option key={i} value={currency}>
               {currency}
@@ -36,8 +40,12 @@ export default function CurrencyConverter() {
       </div>
 
       <div className="to-currency">
-        <span>Moeda 2:</span>
-        <select name="to" onChange={(event) => setTo(event.target.value)}>
+        <span className="to-currency-title">Moeda 2:</span>
+        <select
+          className="to-select"
+          name="to"
+          onChange={(event) => setTo(event.target.value)}
+        >
           {currenciesList.map((currency, i) => (
             <option key={i} value={currency}>
               {currency}
