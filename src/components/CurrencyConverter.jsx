@@ -14,50 +14,48 @@ export default function CurrencyConverter() {
 
   return (
     <div className="converter">
-      <div>
-        <div className="currency-one">
-          <span>Moeda 1: </span>
-          <select name="from" onChange={(event) => setFrom(event.target.value)}>
-            {currenciesList.map((currency, i) => (
-              <option key={i} value={currency}>
-                {currency}
-              </option>
-            ))}
-          </select>
-          <input
-            className="data-input"
-            type="text"
-            onChange={(event) => {
-              setPriceCurrency(event.target.value);
-              if (event.target.value === "") {
-                setExchangedCurrency(0);
-              }
-            }}
-          />
-        </div>
-
-        <div className="currency-two">
-          <span>Moeda 2:</span>
-          <select name="to" onChange={(event) => setTo(event.target.value)}>
-            {currenciesList.map((currency, i) => (
-              <option key={i} value={currency}>
-                {currency}
-              </option>
-            ))}
-          </select>
-
-          <input
-            className="data-input"
-            type="text"
-            value={exchangedCurrency}
-            readOnly={true}
-          />
-        </div>
-
-        <button className="data-button" type="submit" onClick={exchange}>
-          Converter
-        </button>
+      <div className="from-currency">
+        <span>Moeda 1: </span>
+        <select name="from" onChange={(event) => setFrom(event.target.value)}>
+          {currenciesList.map((currency, i) => (
+            <option key={i} value={currency}>
+              {currency}
+            </option>
+          ))}
+        </select>
+        <input
+          className="data-input"
+          type="text"
+          onChange={(event) => {
+            setPriceCurrency(event.target.value);
+            if (event.target.value === "") {
+              setExchangedCurrency(0.0);
+            }
+          }}
+        />
       </div>
+
+      <div className="to-currency">
+        <span>Moeda 2:</span>
+        <select name="to" onChange={(event) => setTo(event.target.value)}>
+          {currenciesList.map((currency, i) => (
+            <option key={i} value={currency}>
+              {currency}
+            </option>
+          ))}
+        </select>
+
+        <input
+          className="data-input"
+          type="text"
+          value={exchangedCurrency}
+          readOnly={true}
+        />
+      </div>
+
+      <button className="data-button" type="submit" onClick={exchange}>
+        Converter
+      </button>
     </div>
   );
 }
