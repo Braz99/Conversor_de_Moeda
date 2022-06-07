@@ -4,7 +4,6 @@ import "../styles/converter.css";
 export default function CurrencyConverter() {
   let {
     setPriceCurrency,
-    setExchangedCurrency,
     exchangedCurrency,
     exchange,
     currenciesList,
@@ -31,10 +30,7 @@ export default function CurrencyConverter() {
           className="data-input"
           type="text"
           onChange={(event) => {
-            setPriceCurrency(event.target.value);
-            if (event.target.value === "") {
-              setExchangedCurrency(0.0);
-            }
+            setPriceCurrency(event.target.value.trim().replace(",", "."));
           }}
         />
       </div>

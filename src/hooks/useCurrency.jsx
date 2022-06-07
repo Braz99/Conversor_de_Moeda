@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function useCurrency() {
-  let [priceCurrency, setPriceCurrency] = useState(0.0);
+  let [priceCurrency, setPriceCurrency] = useState("");
   let [data, setData] = useState("");
   let [exchangedCurrency, setExchangedCurrency] = useState(0.0);
   let [currenciesList, setCurrenciesList] = useState([
@@ -50,9 +50,14 @@ export default function useCurrency() {
         return res.json();
       })
       .then((json) => {
-        let exchangeCurrency = json[data];
+        let exchangeCurrency = parseFloat(json[data]);
         setExchangedCurrency(
-          (parseFloat(priceCurrency) * exchangeCurrency).toFixed(2)
+          (
+            (isNaN(parseFloat(priceCurrency))
+              ? 0.0
+              : parseFloat(priceCurrency)) *
+            (isNaN(exchangeCurrency) ? 0.0 : exchangeCurrency)
+          ).toFixed(2)
         );
       });
   }
@@ -60,7 +65,6 @@ export default function useCurrency() {
   return {
     setPriceCurrency,
     exchange,
-    setExchangedCurrency,
     exchangedCurrency,
     currenciesList,
     setFrom,
