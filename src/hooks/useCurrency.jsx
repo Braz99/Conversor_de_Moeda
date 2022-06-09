@@ -9,6 +9,7 @@ export default function useCurrency() {
   ]);
   let [from, setFrom] = useState("");
   let [to, setTo] = useState("");
+  let [error, setError] = useState({ exists: false, message: "" });
 
   let apiKey = process.env.REACT_APP_API_KEY;
   let url = `https://free.currconv.com/api/v7/convert?q=${data}&compact=ultra&apiKey=${apiKey}`;
@@ -22,6 +23,7 @@ export default function useCurrency() {
         })
         .then((json) => {
           if (json.error) {
+            setError({ exists: true, message: json.error });
             return "";
           }
 
@@ -69,5 +71,7 @@ export default function useCurrency() {
     currenciesList,
     setFrom,
     setTo,
+    error,
+    setError,
   };
 }

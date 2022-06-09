@@ -1,5 +1,6 @@
 import useCurrency from "../hooks/useCurrency";
 import "../styles/converter.css";
+import AlertMessage from "./AlertMessage";
 
 export default function CurrencyConverter() {
   let {
@@ -9,7 +10,12 @@ export default function CurrencyConverter() {
     currenciesList,
     setFrom,
     setTo,
+    error,
+    setError,
   } = useCurrency();
+
+  if (error.exists)
+    return <AlertMessage message={error.message} setMessage={setError} />;
 
   return (
     <div className="converter">
