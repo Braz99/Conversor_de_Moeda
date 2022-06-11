@@ -40,7 +40,8 @@ export default function useCurrency() {
               }
             })
           );
-        }),
+        })
+        .catch((e) => setError({ exists: true, message: e.message })),
     [currencies]
   );
 
