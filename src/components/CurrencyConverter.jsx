@@ -15,7 +15,13 @@ export default function CurrencyConverter() {
   } = useCurrency();
 
   if (error.exists)
-    return <AlertMessage message={error.message} setMessage={setError} />;
+    return (
+      <AlertMessage
+        title={"Erro!"}
+        message={error.message}
+        setMessage={setError}
+      />
+    );
 
   return (
     <div className="converter">

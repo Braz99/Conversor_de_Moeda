@@ -48,7 +48,12 @@ export default function useCurrency() {
   useEffect(() => setData(`${from}_${to}`), [from, to]);
 
   function exchange() {
-    fetch(url)
+    fetch(url, {
+      mode: "no-cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
       .then((res) => {
         return res.json();
       })
@@ -62,7 +67,9 @@ export default function useCurrency() {
             (isNaN(exchangeCurrency) ? 0.0 : exchangeCurrency)
           ).toFixed(2)
         );
-      });
+      })
+
+      .catch((e) => setError({ exists: true, message: e.message }));
   }
 
   return {
