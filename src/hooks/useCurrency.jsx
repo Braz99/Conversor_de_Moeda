@@ -48,12 +48,7 @@ export default function useCurrency() {
   useEffect(() => setData(`${from}_${to}`), [from, to]);
 
   function exchange() {
-    fetch(url, {
-      mode: "no-cors",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-    })
+    fetch(url)
       .then((res) => {
         return res.json();
       })
