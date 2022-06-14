@@ -1,6 +1,6 @@
 import useCurrency from "../hooks/useCurrency";
-import "../styles/converter.css";
 import AlertMessage from "./AlertMessage";
+import "../styles/converter.css";
 
 export default function CurrencyConverter() {
   let {
